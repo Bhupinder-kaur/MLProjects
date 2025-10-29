@@ -1,0 +1,32 @@
+[ 2025-09-27 17:15:21,362 ] 97 werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.114:5000
+[ 2025-09-27 17:15:21,363 ] 97 werkzeug - INFO - [33mPress CTRL+C to quit[0m
+[ 2025-09-27 17:15:42,022 ] 97 werkzeug - INFO - 127.0.0.1 - - [27/Sep/2025 17:15:42] "GET / HTTP/1.1" 200 -
+[ 2025-09-27 17:15:46,772 ] 97 werkzeug - INFO - 127.0.0.1 - - [27/Sep/2025 17:15:46] "GET /predictdata HTTP/1.1" 200 -
+[ 2025-09-27 17:16:14,930 ] 875 app - ERROR - Exception on /predictdata [POST]
+Traceback (most recent call last):
+  File "S:\Projects\MLProjects\src\Pipeline\predict_pipeline.py", line 13, in predict
+    model_path=os.path.join("artifacts","model.pkl")
+               ^^
+NameError: name 'os' is not defined. Did you forget to import 'os'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\bhupi\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\bhupi\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\bhupi\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\bhupi\AppData\Roaming\Python\Python313\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "S:\Projects\MLProjects\app.py", line 39, in predict_datapoint
+    results=predict_pipeline.predict(pred_df)
+  File "S:\Projects\MLProjects\src\Pipeline\predict_pipeline.py", line 24, in predict
+    raise CustomException(e,sys)
+src.exception.CustomException: Error occured in python script name [S:\Projects\MLProjects\src\Pipeline\predict_pipeline.py] line number [13] error message[name 'os' is not defined]
+[ 2025-09-27 17:16:14,941 ] 97 werkzeug - INFO - 127.0.0.1 - - [27/Sep/2025 17:16:14] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
